@@ -4,9 +4,9 @@
 
 //TCP FLOW CLONE PROJECT
 
-int main(int *argc, char** argv){
+int main(int argc, char** argv){
     //VARS----------------------------------
-    char* errbuff[PCAP_ERRBUF_SIZE];
+    char errbuf[PCAP_ERRBUF_SIZE];
     pcap_t* handle;
     char* dev;
     char* net;
@@ -17,11 +17,11 @@ int main(int *argc, char** argv){
     bpf_u_int32 netp; 
     bpf_u_int32 maskp;
     //---------------------------------------
-    dev = pcap_lookupdev(errbuff);
+    dev = pcap_lookupdev(errbuf);
 
     if(dev == NULL){
-        printf("%s\n", errbuff);
-        return(1);
+        printf("%s\n", errbuf);
+        exit(1);
     }
 
     printf("DEVNAME: %s\n", dev);
@@ -45,6 +45,11 @@ int main(int *argc, char** argv){
     }
 
     printf("MASK: %s\n", mask);
+
+    printf("Listening On Device: %s\n", dev);
+
+
+
 
     return(0);
 
