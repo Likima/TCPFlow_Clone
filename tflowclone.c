@@ -2,27 +2,31 @@
 #include <stdlib.h>
 #include <pcap.h>
 
-//TCP FLOW CLONE PROJECT
+/*TCP FLOW CLONE PROJECT
+Captures TCP packets in a loop
+Terminated by ctrl+c
+*/
 
-void packet_analyze(){
+typedef struct{
+    char** strings;
+    int len;
+} list;
+
+void packet_analyze(u_char *param, const struct pcap_pkthdr *header, const u_char *pkt_data, ){
+
 
 }
 
-
-int main(int argc, char** argv){
+int main(u_char *user, int argc, char** argv){
     //VARS----------------------------------
     char errbuf[PCAP_ERRBUF_SIZE];
     pcap_t* handle;
-    char* dev;
-    char* net;
-    char* mask;
+    char* dev, net, mask;
     struct pcap_pkthdr header;
     struct in_addr addr;
     struct bpf_program filter;
-    char filter_exp[] = "tcp";
     const u_char *packet;
-    bpf_u_int32 netp; 
-    bpf_u_int32 maskp;
+    bpf_u_int32 netp, maskp;
     //---------------------------------------
     dev = pcap_lookupdev(errbuf);
 
@@ -50,33 +54,40 @@ int main(int argc, char** argv){
     printf("MASK: %s\n", mask);
     printf("Listening On Device: %s\n\n", dev);
 
-    //--------------------------------------------
-
-    /*
-    verifying terminal input works
-    if(argc != 0){
-        printf("%s\n", argv[1]);
-    }
-    */
-
    //promiscuous mode denoted by the 1, meaning that it captures ALL network traffic
-   handle = pcap_open_live(dev, BUFSIZ, 1, 1000, errbuf);
+    handle = pcap_open_live(dev, BUFSIZ, 1, 1000, errbuf);
     if(handle == NULL){
         fprintf(stderr, "Could not open device: %s\n", errbuf);
-        return(1);
+        return 1;
     }
 
+    //FILTERING TCP PACKETS ONLY
 
-   if(argc == 0){
+    if (pcap_compile(handle, &filter, "tcp", 1, net) == -1) {
+        fprintf(stderr, "Couldn't compile filter: %s\n", pcap_geterr(handle));
+        return 1;
+    }
+
+    if (pcap_setfilter(handle, &filter) == -1) {
+        fprintf(stderr, "Couldn't set filter: %s\n", pcap_geterr(handle));
+        return 1;
+    }    
+
+    //--------
+
+    pcap_loop(handle, 0, packet_analyze, (u_char *)argv)
+
+    /*
+    if(argc == 0){
         while(1){
             pcap_compile(handle, &filter, filter_exp, 1, PCAP_NETMASK_UNKNOWN);
-            packet = pcap_next(handle, &header); //actually captures the packet
+            packet = pcap_next(handle, &header); //captures the packet
             if(packet != NULL){
-                
+                packet_analyze(packet, );
             }
         }
    }
-
+    */
 
     return(0);
 
