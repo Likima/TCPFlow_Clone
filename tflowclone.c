@@ -8,28 +8,39 @@ Terminated by ctrl+c
 */
 
 typedef struct{
-    char** strings;
-    int len;
-} list;
+    char** argv;
+    int argc;
+}cast_var;
 
-void packet_analyze(u_char *param, const struct pcap_pkthdr *header, const u_char *pkt_data, ){
+void packet_handler(u_char *user, const struct pcap_pkthdr *header, const u_char *pkt_data){
+    cast_var* args = (cast_var*) user; //passed to function as a void pointer. Converts to a usable pointer
+    char** argv = args->argv;
+    int argc = args->argc;
 
-
+    for(int x = 1; x<argc; x++){
+        printf("Argument %d: %s\n", x, argv[x]);
+    }
 }
 
-int main(u_char *user, int argc, char** argv){
+int main(int argc, char* argv[]){
     //VARS----------------------------------
     char errbuf[PCAP_ERRBUF_SIZE];
     pcap_t* handle;
-    char* dev, net, mask;
+    char* dev;
+    char* net;
+    char* mask;
     struct pcap_pkthdr header;
     struct in_addr addr;
     struct bpf_program filter;
     const u_char *packet;
     bpf_u_int32 netp, maskp;
+    cast_var usrarg;
     //---------------------------------------
-    dev = pcap_lookupdev(errbuf);
+    usrarg.argv = argv;
+    usrarg.argc = argc;
+    printf("%d\n",argc);
 
+    dev = pcap_lookupdev(errbuf);
     if(dev == NULL){
         printf("%s\n", errbuf);
         exit(1);
@@ -73,21 +84,9 @@ int main(u_char *user, int argc, char** argv){
         return 1;
     }    
 
-    //--------
+    pcap_loop(handle, 0, packet_handler,(u_char *) &usrarg);
 
-    pcap_loop(handle, 0, packet_analyze, (u_char *)argv)
-
-    /*
-    if(argc == 0){
-        while(1){
-            pcap_compile(handle, &filter, filter_exp, 1, PCAP_NETMASK_UNKNOWN);
-            packet = pcap_next(handle, &header); //captures the packet
-            if(packet != NULL){
-                packet_analyze(packet, );
-            }
-        }
-   }
-    */
+    pcap_close(handle);
 
     return(0);
 
