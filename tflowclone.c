@@ -9,6 +9,7 @@
 #include <netinet/in.h>
 #include <string.h>
 #include <signal.h>
+#include <time.h>
 
 /*TCP FLOW CLONE PROJECT
 Captures TCP packets in a loop
@@ -26,39 +27,10 @@ typedef struct{
     int argc;
 }cast_var;
 
-void sigint_handler(int sig) {
-    printf("\nTerminating...\n");
-    fclose(fp);
-    exit(0);
-}
-
-void packet_handler(u_char *user, const struct pcap_pkthdr *header, const u_char *pkt_data){
-    const u_char *packet;
-    struct pcap_pkthdr hdr;
-    cast_var* args = (cast_var*) user; //passed to function as a void pointer. Converts to a usable pointer
-    char** argv = args->argv;
-    int argc = args->argc;
-    printf("%ld\n", header->ts.tv_sec);
-    if(header != NULL){
-        if(fp != NULL && fwrite(pkt_data, header->len, 1, fp) != 1) {
-            fprintf(stderr, "Error writing packet to file\n");
-        }
-        char* timestamp_str = ctime((const time_t *)&header->ts.tv_sec);
-        if (timestamp_str == NULL) {
-            fprintf(stderr, "Error converting timestamp to string\n");
-        } 
-        else {
-            printf("Packet timestamp: %s\n", timestamp_str);
-        }
-
-        printf("Packet length: %d\n", header->len);
-        printf("Packet timestamp: %s\n", ctime((const time_t *)&header->ts.tv_sec));
-    }
-    //printf("Packet Captured!\n");
-}
+void sigint_handler(int);
+void packet_handler(u_char*, const struct pcap_pkthdr*, const u_char*);
 
 int main(int argc, char* argv[]){
-
     char errbuf[PCAP_ERRBUF_SIZE];
     pcap_t* handle;
     char* net; char* dev; char* mask;
@@ -142,9 +114,32 @@ int main(int argc, char* argv[]){
 
     pcap_loop(handle, 0, packet_handler,(u_char *) &usrarg);
 
-
-
     pcap_close(handle);
 
     return(0);
+}
+
+void sigint_handler(int sig) {
+    printf("\nTerminating...\n");
+    if(fp != NULL) fclose(fp);
+    exit(0);
+}
+
+void packet_handler(u_char *user, const struct pcap_pkthdr *header, const u_char *pkt_data){
+    const u_char *packet;
+    struct pcap_pkthdr hdr;
+    cast_var* args = (cast_var*) user; //passed to function as a void pointer. Converts to a usable pointer
+    char** argv = args->argv;
+    int argc = args->argc;
+    //printf("%ld\n", header->ts.tv_sec);
+
+    if(fp != NULL && fwrite(pkt_data, header->len, 1, fp) != 1) {
+        fprintf(stderr, "Error writing packet to file\n");
+    }
+    char* timestamp_str = ctime((const time_t *)&header->ts.tv_sec);
+    printf("Packet timestamp: %s\n", timestamp_str);
+
+    printf("Packet length: %d\n", header->len);
+        //printf("Packet timestamp: %s\n", ctime((const time_t *)&header->ts.tv_sec));
+
 }
