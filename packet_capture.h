@@ -28,5 +28,17 @@ long long int: "long long int", unsigned long long int: "unsigned long long int"
        void *: "pointer to void",                int *: "pointer to int",         \
       default: "other")
 
+FILE* fp = NULL;
 
-#endif /* PACKET_CAPTURE_H */
+typedef struct{
+    char** argv;
+    char* fwname;
+    int argc;
+}cast_var;
+
+typedef struct{
+    char* time;
+    int len;
+}packetData;
+
+#endif
