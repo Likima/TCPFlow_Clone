@@ -7,14 +7,6 @@ Terminated by ctrl+c
 --Make sure to get commands with -
 --code -w TCPFLOW function
 */
-    
-FILE* fp = NULL;
-
-typedef struct{
-    char** argv;
-    char* fwname;
-    int argc;
-}cast_var;
 
 void sigint_handler(int);
 void packet_handler(u_char*, const struct pcap_pkthdr*, const u_char*);
@@ -56,7 +48,7 @@ int main(int argc, char* argv[]){
             len = strlen(argPointer);
             if (len >= 4 && strcmp(argPointer + len - 4, ".txt") != 0) strcat(argv[x+1], ".txt");
 
-            fp = fopen(strcpy(cpy, argv[x+1]), "a+");
+            fp = fopen(strcpy(cpy, argv[x+1]), "w+");
             if(fp == NULL){
                 printf("Invalid usage of -w, file %s provided does not exist\n", *argv[x+1]);
                 exit(1);
@@ -108,7 +100,6 @@ int main(int argc, char* argv[]){
     }    
 
     pcap_loop(handle, 0, packet_handler,(u_char *) &usrarg);
-
     pcap_close(handle);
 
     return(0);
@@ -119,22 +110,45 @@ void sigint_handler(int sig) {
     if(fp != NULL) fclose(fp);
     exit(0);
 }
+/*
+void file_writer(u_char *user, const struct pcap_pkthdr *header, const u_char *pkt_data){
 
+
+    return 0;
+}
+*/
 void packet_handler(u_char *user, const struct pcap_pkthdr *header, const u_char *pkt_data){
     const u_char *packet;
+    const struct ip *ip_header;
     struct pcap_pkthdr hdr;
     cast_var* args = (cast_var*) user; //passed to function as a void pointer. Converts to a usable pointer
+    //packetData data;
     char** argv = args->argv;
     int argc = args->argc;
-    //printf("%ld\n", header->ts.tv_sec);
 
-    if(fp != NULL && fwrite(pkt_data, header->len, 1, fp) != 1) {
-        fprintf(stderr, "Error writing packet to file\n");
-    }
     char* timestamp_str = ctime((const time_t *)&header->ts.tv_sec);
-    printf("Packet timestamp: %s\n", timestamp_str);
 
+    ip_header = (struct ip*)(pkt_data + sizeof(struct ether_header));
+
+    char src_ip[INET_ADDRSTRLEN];
+    char dst_ip[INET_ADDRSTRLEN];
+    inet_ntop(AF_INET, &(ip_header->ip_src), src_ip, INET_ADDRSTRLEN);
+    inet_ntop(AF_INET, &(ip_header->ip_dst), dst_ip, INET_ADDRSTRLEN);
+
+    printf("Source IP: %s\n", src_ip);
+    printf("Destination IP: %s\n", dst_ip);
     printf("Packet length: %d\n", header->len);
+    printf("Packet timestamp: %s\n\n", timestamp_str);
+    /*
+    if(fp != NULL){
+        fprintf(fp, "---NEW PACKET---\nTIME CAPTURED: ");
+        fprintf(fp, "%s", timestamp_str);
+        fprintf(fp, "PACKET LENGTH: ");
+        fprintf(fp, "%d\n\n", header->len);
+    }
+    //write function in separate .h file to do this
+    */
+
         //printf("Packet timestamp: %s\n", ctime((const time_t *)&header->ts.tv_sec));
 
 }
