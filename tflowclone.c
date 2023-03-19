@@ -1,15 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <pcap.h>
-#include <arpa/inet.h>
-#include <netinet/ip.h>
-#include <net/ethernet.h> 
-#include <errno.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <string.h>
-#include <signal.h>
-#include <time.h>
+#include "packet_capture.h"
 
 /*TCP FLOW CLONE PROJECT
 Captures TCP packets in a loop
@@ -18,7 +7,7 @@ Terminated by ctrl+c
 --Make sure to get commands with -
 --code -w TCPFLOW function
 */
-
+    
 FILE* fp = NULL;
 
 typedef struct{
@@ -41,27 +30,38 @@ int main(int argc, char* argv[]){
     bpf_u_int32 netp; bpf_u_int32 maskp;
     cast_var usrarg;
     int promisc = 0;
-    char cpy[10];
-
+    char* argPointer;
+    int len;
+    char cpy[100];
     usrarg.argv = argv;
     usrarg.argc = argc;
 
     for(int x = 1; x<argc; x=x+1){
-        if((int) *argv[x] == 0 || (int) *argv[x] == 1){
-            promisc = *argv[x];
-            break;
-        }
-        
-        if(strcmp(*argv[x], "-w")==0){
-            if(x == argc){
-                printf("Invalid usage of -w, no file provided. SYNTAX: ./tflowclone -w <filename>");
+        if(isdigit(*argv[x]) != 0){
+            if(atoi(argv[x]) == 0 || atoi(argv[x]) == 1){
+                promisc = atoi(argv[x]);
+                continue;
+            } else {
+                printf("Promiscuous denoted by 0 or 1\n");
                 exit(1);
             }
-            fp = fopen(strcpy(cpy, argv[x+1]), "w");
+        }
+
+        if(strcmp(argv[x], "-w")==0){
+            if(x == argc - 1){
+                printf("Invalid usage of -w, no file provided. SYNTAX: ./tflowclone -w <filename>\n");
+                exit(1);
+            }
+            argPointer = argv[x+1];
+            len = strlen(argPointer);
+            if (len >= 4 && strcmp(argPointer + len - 4, ".txt") != 0) strcat(argv[x+1], ".txt");
+
+            fp = fopen(strcpy(cpy, argv[x+1]), "a+");
             if(fp == NULL){
                 printf("Invalid usage of -w, file %s provided does not exist\n", *argv[x+1]);
                 exit(1);
             }
+            
             x=x+1;
             signal(SIGINT, sigint_handler);
         //add later in the code; is used to add the -w functionality
@@ -74,26 +74,21 @@ int main(int argc, char* argv[]){
         exit(1);
     }
     printf("DEVNAME: %s\n", dev);
-
     addr.s_addr = netp;
     net = inet_ntoa(addr);//converts addr (in inet) to ascii
     if(net == NULL){
         perror("inet_ntoa");
         exit(1);
     }
-
     printf("NET: %s\n", net);
-
     addr.s_addr = maskp;
     mask = inet_ntoa(addr);
-  
     if(mask == NULL)
     {
         perror("inet_ntoa");
         exit(1);
     }
-
-    printf("MASK: %s\n", mask);
+    printf("MASK: %s\n\n", mask);
 
     printf("Listening On Device: %s\n\n", dev);
    //promiscuous mode denoted by the 1, meaning that it captures ALL network traffic
