@@ -1,4 +1,6 @@
 #include "packet_capture.h"
+#include "tcp_functions.h"
+
 
 /*TCP FLOW CLONE PROJECT
 Captures TCP packets in a loop
@@ -7,9 +9,6 @@ Terminated by ctrl+c
 --Make sure to get commands with -
 --code -w TCPFLOW function
 */
-
-void sigint_handler(int);
-void packet_handler(u_char*, const struct pcap_pkthdr*, const u_char*);
 
 int main(int argc, char* argv[]){
     char errbuf[PCAP_ERRBUF_SIZE];
@@ -105,40 +104,36 @@ int main(int argc, char* argv[]){
     return(0);
 }
 
-void sigint_handler(int sig) {
-    printf("\nTerminating...\n");
-    if(fp != NULL) fclose(fp);
-    exit(0);
-}
-/*
-void file_writer(u_char *user, const struct pcap_pkthdr *header, const u_char *pkt_data){
-
-
-    return 0;
-}
-*/
 void packet_handler(u_char *user, const struct pcap_pkthdr *header, const u_char *pkt_data){
+    packetData pack;
     const u_char *packet;
-    const struct ip *ip_header;
-    struct pcap_pkthdr hdr;
     cast_var* args = (cast_var*) user; //passed to function as a void pointer. Converts to a usable pointer
-    //packetData data;
-    char** argv = args->argv;
-    int argc = args->argc;
-
-    char* timestamp_str = ctime((const time_t *)&header->ts.tv_sec);
-
-    ip_header = (struct ip*)(pkt_data + sizeof(struct ether_header));
-
+    //char** argv = args->argv;
+    //int argc = args->argc;
+    char* payload;
     char src_ip[INET_ADDRSTRLEN];
     char dst_ip[INET_ADDRSTRLEN];
-    inet_ntop(AF_INET, &(ip_header->ip_src), src_ip, INET_ADDRSTRLEN);
-    inet_ntop(AF_INET, &(ip_header->ip_dst), dst_ip, INET_ADDRSTRLEN);
 
+    pack.header = header;
+    pack.time = ctime((const time_t *)&header->ts.tv_sec);
+    pack.ip_header = (struct ip*)(pkt_data + sizeof(struct ether_header));
+
+    inet_ntop(AF_INET, &(pack.ip_header->ip_src), src_ip, INET_ADDRSTRLEN);
+    inet_ntop(AF_INET, &(pack.ip_header->ip_dst), dst_ip, INET_ADDRSTRLEN);
+
+    printf("Packet Payload: ");
+    for (int i = 0; i < header->len; i++) {
+        printf("%02x ", pkt_data[i]);
+    }
+    printf("\n");
+
+    decode_ipv4(pkt_data);
+
+    //printInfo(pack, src_ip, dst_ip0);
     printf("Source IP: %s\n", src_ip);
     printf("Destination IP: %s\n", dst_ip);
-    printf("Packet length: %d\n", header->len);
-    printf("Packet timestamp: %s\n\n", timestamp_str);
+    printf("Packet length: %d\n", pack.header->len);
+    printf("Packet timestamp: %s\n\n", pack.time);
     /*
     if(fp != NULL){
         fprintf(fp, "---NEW PACKET---\nTIME CAPTURED: ");
