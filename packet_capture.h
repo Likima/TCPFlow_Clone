@@ -6,27 +6,22 @@
 #include <pcap.h>
 #include <arpa/inet.h>
 #include <netinet/ip.h>
+#include <netinet/in.h>
 #include <net/ethernet.h> 
 #include <errno.h>
 #include <sys/socket.h>
-#include <netinet/in.h>
 #include <string.h>
 #include <signal.h>
 #include <time.h>
 #include <ctype.h>
+#include <sys/types.h>
+#include <features.h>
 
-#define typename(x) _Generic((x),                                                 \
-                                                                                  \
-        _Bool: "_Bool",                  unsigned char: "unsigned char",          \
-         char: "char",                     signed char: "signed char",            \
-    short int: "short int",         unsigned short int: "unsigned short int",     \
-          int: "int",                     unsigned int: "unsigned int",           \
-     long int: "long int",           unsigned long int: "unsigned long int",      \
-long long int: "long long int", unsigned long long int: "unsigned long long int", \
-        float: "float",                         double: "double",                 \
-  long double: "long double",                   char *: "pointer to char",        \
-       void *: "pointer to void",                int *: "pointer to int",         \
-      default: "other")
+
+void sigint_handler(int);
+void packet_handler(u_char*, const struct pcap_pkthdr*, const u_char*);
+
+typedef unsigned char u_char;
 
 FILE* fp = NULL;
 
@@ -38,7 +33,10 @@ typedef struct{
 
 typedef struct{
     char* time;
+    char* payload;
     int len;
+    const struct ip *ip_header;
+    struct pcap_pkthdr *header;
 }packetData;
 
 #endif
