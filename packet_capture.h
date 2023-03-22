@@ -16,6 +16,7 @@
 #include <ctype.h>
 #include <sys/types.h>
 #include <features.h>
+#include <netinet/tcp.h>
 
 
 void sigint_handler(int);
@@ -32,11 +33,12 @@ typedef struct{
 }cast_var;
 
 typedef struct{
+    char* type;
     char* time;
     char* payload;
     int len;
     const struct ip *ip_header;
-    struct pcap_pkthdr *header;
+    const struct pcap_pkthdr *header;
 }packetData;
 
 #endif
