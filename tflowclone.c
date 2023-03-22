@@ -1,7 +1,6 @@
 #include "packet_capture.h"
 #include "tcp_functions.h"
 
-
 /*TCP FLOW CLONE PROJECT
 Captures TCP packets in a loop
 Terminated by ctrl+c
@@ -23,7 +22,6 @@ int main(int argc, char* argv[]){
     int promisc = 0;
     char* argPointer;
     int len;
-    char cpy[100];
     usrarg.argv = argv;
     usrarg.argc = argc;
 
@@ -47,7 +45,7 @@ int main(int argc, char* argv[]){
             len = strlen(argPointer);
             if (len >= 4 && strcmp(argPointer + len - 4, ".txt") != 0) strcat(argv[x+1], ".txt");
 
-            fp = fopen(strcpy(cpy, argv[x+1]), "w+");
+            fp = fopen(argv[x+1], "w+");
             if(fp == NULL){
                 printf("Invalid usage of -w, file %s provided does not exist\n", *argv[x+1]);
                 exit(1);
@@ -55,7 +53,6 @@ int main(int argc, char* argv[]){
             
             x=x+1;
             signal(SIGINT, sigint_handler);
-        //add later in the code; is used to add the -w functionality
         }
     }
 
@@ -88,8 +85,8 @@ int main(int argc, char* argv[]){
         fprintf(stderr, "Could not open device: %s\n", errbuf);
         return 1;
     }
-    //FILTERING TCP PACKETS ONLY
-    if(pcap_compile(handle, &filter, "tcp", 1, netp) == -1) {//1 denotes speed; 0 denotes size
+
+    if(pcap_compile(handle, &filter, "udp", 1, netp) == -1) {//1 denotes speed; 0 denotes size
         fprintf(stderr, "Couldn't compile filter: %s\n", pcap_geterr(handle));
         return 1;
     }
@@ -106,34 +103,56 @@ int main(int argc, char* argv[]){
 
 void packet_handler(u_char *user, const struct pcap_pkthdr *header, const u_char *pkt_data){
     packetData pack;
-    const u_char *packet;
-    cast_var* args = (cast_var*) user; //passed to function as a void pointer. Converts to a usable pointer
+    struct tcphdr *tPacket;
+    //cast_var* args = (cast_var*) user; //passed to function as a void pointer. Converts to a usable pointer
     //char** argv = args->argv;
     //int argc = args->argc;
-    char* payload;
     char src_ip[INET_ADDRSTRLEN];
     char dst_ip[INET_ADDRSTRLEN];
 
     pack.header = header;
     pack.time = ctime((const time_t *)&header->ts.tv_sec);
-    pack.ip_header = (struct ip*)(pkt_data + sizeof(struct ether_header));
+    pack.ip_header = (struct ip*)(pkt_data + sizeof(struct ether_header)); //fancy way of saying 14
 
-    inet_ntop(AF_INET, &(pack.ip_header->ip_src), src_ip, INET_ADDRSTRLEN);
-    inet_ntop(AF_INET, &(pack.ip_header->ip_dst), dst_ip, INET_ADDRSTRLEN);
-
+    /*
     printf("Packet Payload: ");
     for (int i = 0; i < header->len; i++) {
         printf("%02x ", pkt_data[i]);
     }
     printf("\n");
+    */
 
-    decode_ipv4(pkt_data);
+    //checking for ip version
+    if(pack.ip_header->ip_v == 4){
+        printf("IPv4 Packet\n");
+        decode_ipv4(pack.ip_header);
+        inet_ntop(AF_INET, &(pack.ip_header->ip_src), src_ip, INET_ADDRSTRLEN);
+        inet_ntop(AF_INET, &(pack.ip_header->ip_dst), dst_ip, INET_ADDRSTRLEN);
 
-    //printInfo(pack, src_ip, dst_ip0);
-    printf("Source IP: %s\n", src_ip);
-    printf("Destination IP: %s\n", dst_ip);
-    printf("Packet length: %d\n", pack.header->len);
-    printf("Packet timestamp: %s\n\n", pack.time);
+    } else if(pack.ip_header->ip_v==6){
+        printf("IPv6 Packet\n");
+        decode_ipv6(pack.ip_header);
+        inet_ntop(AF_INET6, &(pack.ip_header->ip_src), src_ip, INET6_ADDRSTRLEN);
+        inet_ntop(AF_INET6, &(pack.ip_header->ip_dst), dst_ip, INET6_ADDRSTRLEN);
+
+    } else{
+        printf("UNKOWN PACKET TYPE\n");//as of rn
+    }
+
+    //checking for tcp packet
+    if(pack.ip_header->ip_p==6){//protocol 6 means tcp packet
+        printf("   |   | TCP PACKET\n");
+        tPacket = (struct tcphdr*)(pkt_data + sizeof(struct ether_header));
+        decode_tcp(tPacket);
+    }
+
+
+    //printInfo(pack, src_ip, dst_ip);
+    printf("   | Source IP: %s\n", src_ip);
+    printf("   | Destination IP: %s\n", dst_ip);
+    printf("   | Packet length: %d\n", pack.header->len);
+    printf("   | Packet timestamp: %s\n\n", pack.time);
+
     /*
     if(fp != NULL){
         fprintf(fp, "---NEW PACKET---\nTIME CAPTURED: ");
