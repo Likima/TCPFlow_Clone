@@ -1,0 +1,1654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program>TCP_FLOW_CLONE</program>
+<OS_ENVIRONMENT>
+<operating_system>Linux 5.19.0-35-generic</operating_system>
+<os_version>(null)</os_version>
+<os_release>5.19.0-35-generic</os_release>
+</OS_ENVIRONMENT>
+|-ÉÇ
+time <Fri Mar 31 17:49:07 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+Æ4
+time <Fri Mar 31 17:49:07 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   | URG Flag NOT Set |
+
+Q
+time <Fri Mar 31 17:49:07 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   | URG Flag NOT Set |
+
+
+time <Fri Mar 31 17:49:07 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-ÉÇ
+time <Fri Mar 31 17:49:07 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+ÄËçßR†hﬂò0
+time <Fri Mar 31 17:49:07 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-ø"
+time <Fri Mar 31 17:49:07 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-ø"
+time <Fri Mar 31 17:49:07 2023
+>length <25602> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   |   PSH Flag Set   |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+m}¸OÆ5†hﬂ,ç
+time <Fri Mar 31 17:49:07 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-ø
+time <Fri Mar 31 17:49:07 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Fri Mar 31 17:49:07 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Fri Mar 31 17:49:07 2023
+>length <56325> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-ø"
+time <Fri Mar 31 17:49:07 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Fri Mar 31 17:49:07 2023
+>length <38400> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   |   PSH Flag Set   |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-ø"
+time <Fri Mar 31 17:49:07 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Fri Mar 31 17:54:43 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   | URG Flag NOT Set |
+
+G0
+time <Fri Mar 31 17:54:43 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   | URG Flag NOT Set |
+
+Ã˘óÈG1†hﬂ≈
+time <Fri Mar 31 17:54:43 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-¥ 
+time <Fri Mar 31 17:54:43 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+ú›™
+time <Fri Mar 31 17:54:43 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-¥¿
+time <Fri Mar 31 17:54:43 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-¥ 
+time <Fri Mar 31 17:54:43 2023
+>length <25602> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   |   PSH Flag Set   |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Fri Mar 31 17:54:43 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Fri Mar 31 17:54:43 2023
+>length <56325> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-¥ 
+time <Fri Mar 31 17:54:43 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Fri Mar 31 17:54:43 2023
+>length <38400> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   |   PSH Flag Set   |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-¥ 
+time <Fri Mar 31 17:54:43 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Fri Mar 31 17:54:48 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-¥ 
+time <Fri Mar 31 17:54:48 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+)i
+time <Sat Apr  1 14:30:36 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   | URG Flag NOT Set |
+
+ R
+time <Sat Apr  1 14:30:36 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   | URG Flag NOT Set |
+
+Ú\
+time <Sat Apr  1 14:30:36 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   | URG Flag NOT Set |
+
+:ù£x)j†hﬂXÈ
+time <Sat Apr  1 14:30:36 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-∆V
+time <Sat Apr  1 14:30:36 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+÷º} S†hﬂ x
+time <Sat Apr  1 14:30:36 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-∆d
+time <Sat Apr  1 14:30:36 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-∆V
+time <Sat Apr  1 14:30:36 2023
+>length <25602> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   |   PSH Flag Set   |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+®„µÚ]†hﬂH
+time <Sat Apr  1 14:30:36 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-∆t
+time <Sat Apr  1 14:30:36 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Sat Apr  1 14:30:36 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Sat Apr  1 14:30:36 2023
+>length <56325> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-∆V
+time <Sat Apr  1 14:30:36 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Sat Apr  1 14:30:36 2023
+>length <38400> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   |   PSH Flag Set   |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-∆V
+time <Sat Apr  1 14:30:36 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-∆d
+time <Sat Apr  1 14:30:52 2023
+>length <25602> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   |   PSH Flag Set   |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Sat Apr  1 14:30:52 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Sat Apr  1 14:30:52 2023
+>length <56325> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-∆d
+time <Sat Apr  1 14:30:52 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Sat Apr  1 14:30:52 2023
+>length <38400> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   |   PSH Flag Set   |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-∆d
+time <Sat Apr  1 14:30:52 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Sat Apr  1 14:30:57 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-∆d
+time <Sat Apr  1 14:30:57 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+∫Ì
+time <Sat Apr  1 14:31:06 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <185.125.190.17>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   | URG Flag NOT Set |
+
+˜n_˘∫Ó†˛à∑á
+time <Sat Apr  1 14:31:06 2023
+>length <15360> bytes
+protocol <6>
+src_ip <185.125.190.17>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+æ—⁄
+time <Sat Apr  1 14:31:06 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <185.125.190.17>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+æ—⁄
+time <Sat Apr  1 14:31:06 2023
+>length <35584> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <185.125.190.17>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   |   PSH Flag Set   |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Sat Apr  1 14:31:06 2023
+>length <50944> bytes
+protocol <6>
+src_ip <185.125.190.17>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   |   PSH Flag Set   |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+æ—⁄
+time <Sat Apr  1 14:31:06 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <185.125.190.17>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Sat Apr  1 14:31:06 2023
+>length <13312> bytes
+protocol <6>
+src_ip <185.125.190.17>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+æ—⁄
+time <Sat Apr  1 14:31:06 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <185.125.190.17>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Sat Apr  1 14:31:06 2023
+>length <13312> bytes
+protocol <6>
+src_ip <185.125.190.17>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+®„µÚ]†hﬂ…)
+time <Sat Apr  1 14:31:08 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-∆t
+time <Sat Apr  1 14:31:08 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+|-∆t
+time <Sat Apr  1 14:31:22 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Sat Apr  1 14:31:23 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   |   ACK Flag Set   |
+   | URG Flag NOT Set |
+
+
+time <Sat Apr  1 14:32:57 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:32:57 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:32:57 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:32:57 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:32:57 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:32:57 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:32:57 2023
+>length <25602> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:32:57 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:32:57 2023
+>length <56325> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:32:57 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:32:57 2023
+>length <38400> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:32:57 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:41:29 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:41:29 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:41:29 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:41:29 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:41:29 2023
+>length <25602> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:41:29 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:41:29 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:41:29 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:41:29 2023
+>length <56325> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:41:29 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:41:29 2023
+>length <38400> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:41:29 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:42:01 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:01 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:10 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:10 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:10 2023
+>length <25602> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:42:10 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:42:10 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:10 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:42:10 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:42:10 2023
+>length <56325> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:10 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:42:10 2023
+>length <38400> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:10 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:50 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:42:50 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:53 2023
+>length <25602> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:53 2023
+>length <15360> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:42:53 2023
+>length <13312> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:42:53 2023
+>length <56325> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:53 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:42:53 2023
+>length <38400> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:53 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+\ÍÜ+Y¿3`F
+time <Sat Apr  1 14:42:53 2023
+>length <15360> bytes
+protocol <6>
+src_ip <34.223.124.45>
+dst_ip <10.0.0.34>
+
+
+FLAGS
+   |   SYN Flag Set   |
+   | RST Flag NOT Set |
+   | PSH Flag NOT Set |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
+
+time <Sat Apr  1 14:42:53 2023
+>length <13312> bytes
+protocol <6>
+src_ip <10.0.0.34>
+dst_ip <34.223.124.45>
+
+
+FLAGS
+   | SYN Flag NOT Set |
+   |   RST Flag Set   |
+   |   PSH Flag Set   |
+   | ACK Flag NOT Set |
+   |   URG Flag Set   |
