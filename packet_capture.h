@@ -17,7 +17,14 @@
 #include <sys/types.h>
 #include <features.h>
 #include <netinet/tcp.h>
+#include <netinet/udp.h>
+#include <unistd.h>
+#include <sys/utsname.h>
 
+#define CREATE_FILE "\
+#/bin/bash \n\
+touch report.xml\
+"
 
 void sigint_handler(int);
 void packet_handler(u_char*, const struct pcap_pkthdr*, const u_char*);
@@ -26,11 +33,6 @@ typedef unsigned char u_char;
 
 FILE* fp = NULL;
 
-typedef struct{
-    char** argv;
-    char* fwname;
-    int argc;
-}cast_var;
 
 typedef struct{
     char* type;
