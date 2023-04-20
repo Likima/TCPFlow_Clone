@@ -1,19 +1,18 @@
 #include "packet_capture.h"
 #include "tcp_functions.h"
-#include "xmlwrite.h"
+#include "initial.h"
 
 /*TCP FLOW CLONE PROJECT
-Captures TCP packets in a loop
+Captures TCP packets... maybe more
 Terminated by ctrl+c
---create xml file generator
+--improve xml file generator
 --organize git better
---make payload human readable (non encrypted) http packets (tcp port 80)
 mac_daddr: destination address
 mac_saddr: source address 
 https://en.wikipedia.org/wiki/Transmission_Control_Protocol
---zlip
+--zlib
 --sudo tcpflow port 80 and host shinyslowfinemagic.neverssl.com
---debug tcp packet
+--implement zlib decoding
 */
 
 int main(int argc, char* argv[]){
@@ -27,8 +26,8 @@ int main(int argc, char* argv[]){
     const u_char *packet;
     bpf_u_int32 netp; bpf_u_int32 maskp;
     int promisc = 0;
-    int len;
     signal(SIGINT, sigint_handler);
+
     for(int x = 1; x<argc; x=x+1){
         /*
         if(strcmp(argv[x], "-w")==0){
@@ -46,6 +45,11 @@ int main(int argc, char* argv[]){
                 exit(1);
             }
         */
+        if(strcmp(argv[x], "-a")==0){
+            printf("creating html\n");
+
+        }
+
         if(strcmp(argv[x], "-p")==0){
             promisc = 1;
             printf("Set To Promiscuous Mode\n\n");
@@ -59,6 +63,10 @@ int main(int argc, char* argv[]){
             //fp = fopen(argv[x+1], "w+");         
             x=x+1;
             continue;
+        }
+        else if(strcmp(argv[x], "-c")==0){
+            printf("Printing To Console...\n");
+            cprint = !cprint;
         }
     }
     dev = pcap_lookupdev(errbuf);
@@ -98,7 +106,8 @@ int main(int argc, char* argv[]){
     }
 
     if (access("report.xml", F_OK) != 0) {
-        system(CREATE_FILE);
+        //system(CREATE_FILE);
+        system("touch report.xml");
     }
     fp = fopen("report.xml", "a+");
 
@@ -117,64 +126,81 @@ int main(int argc, char* argv[]){
 
 void packet_handler(u_char *param, const struct pcap_pkthdr *header, const u_char *pkt_data){
     packetData pack;
+    size_t len;
     struct tcphdr *tPacket;
     struct udphdr *uPacket;
+    struct iphdr *iph = (struct iphdr*)(pkt_data + sizeof(struct ethhdr));
+    char *httppack = NULL;
+    char comb[BUFSIZ];
+    char *file_name = NULL;
+    char t[BUFSIZ];
+    char ipfname[BUFSIZ];
+    char info[BUFSIZ];
     char src_ip[INET6_ADDRSTRLEN];
     char dst_ip[INET6_ADDRSTRLEN];
+    int siz;
+    int payload_size;
+    int payload_off;
     pack.header = header;
     pack.time = ctime((const time_t *)&header->ts.tv_sec);
-    pack.ip_header = (struct ip*)(pkt_data + sizeof(struct ether_header)); //fancy way of saying 14
+    pack.ip_header = (struct ip*)(pkt_data + sizeof(struct ether_header));
     //ethernet header are the bytes up to 14
     //ip header is the next 20 bytes
-    printf("Payload Length: %d\n", header->len);
-    printf("Packet Payload: ");
-    for (int i = 0; i < header->len; i++){
-        printf("%02x ", pkt_data[i]);
-    }
-    
+
+    /*
+    if(cprint && pack.ip_header->ip_p == 6){//only runs this if tcp packet
+        for (int i = 0; i < header->len; i++){
+            printf("%c", pkt_data[sizeof(struct ethhdr) + sizeof(struct iphdr) + sizeof(struct tcphdr) + i]);
+        }
     printf("\n");
+    }
+    */ //add for other packets later
     
-    //checking for ip version
     if(pack.ip_header->ip_v == 4){
-        printf("IPv4 Packet\n");
         inet_ntop(AF_INET, &(pack.ip_header->ip_src), src_ip, INET_ADDRSTRLEN);
         inet_ntop(AF_INET, &(pack.ip_header->ip_dst), dst_ip, INET_ADDRSTRLEN);
 
     } else if(pack.ip_header->ip_v==6){
-        printf("IPv6 Packet\n");
         inet_ntop(AF_INET6, &(pack.ip_header->ip_src), src_ip, INET6_ADDRSTRLEN);
         inet_ntop(AF_INET6, &(pack.ip_header->ip_dst), dst_ip, INET6_ADDRSTRLEN);
 
-    } else{
-        printf("UNKOWN PACKET TYPE\n");//as of rn
+    }else{
+        printf("UNKOWN PACKET TYPE\n");
         exit(1);
     }
-    decode_ipvx(pack.ip_header);
+    if(cprint) decode_ipvx(pack.ip_header);
 
     if(pack.ip_header->ip_p==6){
-        printf("   |   | TCP PACKET\n");
-        //tPacket = (struct tcphdr*)(pkt_data + sizeof(struct ether_header)+(pack.ip_header->ip_hl*4));
-        tPacket = (struct tcphdr*)(pkt_data + sizeof(struct iphdr));
-        //tPacket = (struct tcphdr *)(pkt_data + 20);
-        fprintf(fp, "%.*s\n", header->len-tPacket->doff*4, (const char*) pkt_data+tPacket->doff*4);
+        tPacket = (struct tcphdr*)(pkt_data + sizeof(struct iphdr)+ sizeof(struct ethhdr));
+        //printf("%s.%u-%s.%u\n", src_ip, tPacket->source, dst_ip, tPacket->dest);
+        snprintf(ipfname, BUFSIZ, "%s.%u-%s.%u", src_ip, tPacket->source, dst_ip, tPacket->dest);
+        snprintf(comb, BUFSIZ, "touch %s.%u-%s.%u", src_ip, tPacket->source, dst_ip, tPacket->dest);
+        printf("here: %s\n%s\n", comb,ipfname);
         decode_tcp(tPacket);
-        printf("THIS IS THE DECODED:\n");
-        //printf("%s\n", (const char*)(pkt_data+tPacket->doff*4));
-        printf( "%.*s\n", (header->len)-(tPacket->doff*4), (const char*)(pkt_data+sizeof(struct ethhdr) + pack.ip_header->ip_hl*4 + tPacket->doff*4));
-
+        system(comb);
+        ipfp = fopen(ipfname, "w");//opens touch ----
+        //payload_size = ntohs(iph->tot_len) - (iph->ihl * 4) - (tPacket->doff * 4);
+        strcpy(info, ((const char*)(pkt_data+sizeof(struct ethhdr) + pack.ip_header->ip_hl*4 + tPacket->doff*4)));
+        if(cprint){
+            decode_tcp(tPacket);
+            printf( "%.*s\n\n", (header->len)-(tPacket->doff*4), info);
+        }
+        fprintf(ipfp, "%.*s\n", (header->len)-(tPacket->doff*4), info);
+        fclose(ipfp);
+        ipfp = NULL;
     }
-    if(pack.ip_header->ip_p == 17 || pack.ip_header->ip_p == 128){
-        printf("   |   | UDP PACKET\n");
-        uPacket = (struct udphdr*)(pkt_data + sizeof(struct ether_header));
-        decode_udp(uPacket);
 
+    if(pack.ip_header->ip_p == 17 || pack.ip_header->ip_p == 128){
+        uPacket = (struct udphdr*)(pkt_data + sizeof(struct ether_header));
+        if(cprint) decode_udp(uPacket);
     }
     
-    //printInfo(pack, src_ip, dst_ip);
-    printf("   | Source IP: %s\n", src_ip);
-    printf("   | Destination IP: %s\n", dst_ip);
-    printf("   | Packet length: %d\n", pack.header->len);
-    printf("   | Packet timestamp: %s\n\n", pack.time);
+    if(cprint){
+        printf("   | Source IP: %s\n", src_ip);
+        printf("   | Destination IP: %s\n", dst_ip);
+        printf("   | Packet length: %d\n", pack.header->len);
+        printf("   | Packet timestamp: %s\n\n", pack.time);
+    }
 
     if(fp != NULL){
         writef(pack, src_ip, dst_ip);
