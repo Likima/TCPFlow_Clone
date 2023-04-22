@@ -74,21 +74,6 @@ int main(int argc, char* argv[]){
         printf("%s\n", errbuf);
         exit(1);
     }
-    printf("DEVNAME: %s\n", dev);
-    addr.s_addr = netp;
-    net = inet_ntoa(addr);//converts addr (in inet) to ascii
-    if(net == NULL){
-        perror("inet_ntoa");
-        exit(1);
-    }
-    printf("NET: %s\n", net);
-    addr.s_addr = maskp;
-    mask = inet_ntoa(addr);
-    if(mask == NULL){
-        perror("inet_ntoa");
-        exit(1);
-    }
-    printf("MASK: %s\n\n", mask);
     printf("Listening On Device: %s\n\n", dev);
    //promiscuous mode denoted by the 1, meaning that it captures ALL network traffic
     handle = pcap_open_live(dev, BUFSIZ, promisc, 1000, errbuf);
@@ -109,14 +94,16 @@ int main(int argc, char* argv[]){
         //system(CREATE_FILE);
         system("touch report.xml");
     }
+    
     fp = fopen("report.xml", "a+");
 
 
     fseek (fp, 0, SEEK_END);
     if(ftell(fp) == 0){
         fprintf (fp,"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
-        initialize();
+        //initialize();
     }
+    
     pcap_loop(handle, 0, packet_handler, NULL);
     pcap_freecode(&filter);
     pcap_close(handle);
@@ -131,14 +118,16 @@ void packet_handler(u_char *param, const struct pcap_pkthdr *header, const u_cha
     struct udphdr *uPacket;
     struct iphdr *iph = (struct iphdr*)(pkt_data + sizeof(struct ethhdr));
     char *httppack = NULL;
-    char comb[BUFSIZ];
+    char comb[BUFSIZ+6];
     char *file_name = NULL;
-    char t[BUFSIZ];
+    //char t[BUFSIZ];
     char ipfname[BUFSIZ];
     char info[BUFSIZ];
     char src_ip[INET6_ADDRSTRLEN];
     char dst_ip[INET6_ADDRSTRLEN];
+    //char *store;
     int siz;
+    int tick = 1;
     int payload_size;
     int payload_off;
     pack.header = header;
@@ -155,7 +144,7 @@ void packet_handler(u_char *param, const struct pcap_pkthdr *header, const u_cha
     printf("\n");
     }
     */ //add for other packets later
-    
+    printf("----------------------------------------");
     if(pack.ip_header->ip_v == 4){
         inet_ntop(AF_INET, &(pack.ip_header->ip_src), src_ip, INET_ADDRSTRLEN);
         inet_ntop(AF_INET, &(pack.ip_header->ip_dst), dst_ip, INET_ADDRSTRLEN);
@@ -172,20 +161,33 @@ void packet_handler(u_char *param, const struct pcap_pkthdr *header, const u_cha
 
     if(pack.ip_header->ip_p==6){
         tPacket = (struct tcphdr*)(pkt_data + sizeof(struct iphdr)+ sizeof(struct ethhdr));
-        //printf("%s.%u-%s.%u\n", src_ip, tPacket->source, dst_ip, tPacket->dest);
-        snprintf(ipfname, BUFSIZ, "%s.%u-%s.%u", src_ip, tPacket->source, dst_ip, tPacket->dest);
-        snprintf(comb, BUFSIZ, "touch %s.%u-%s.%u", src_ip, tPacket->source, dst_ip, tPacket->dest);
+        //siz = snprintf(ipfname, BUFSIZ+1, "%s.%u-%s.%u.txt", src_ip, tPacket->source, dst_ip, tPacket->dest);
+        //snprintf(comb, BUFSIZ+1, "touch %s.%u-%s.%u.txt", src_ip, tPacket->source, dst_ip, tPacket->dest);
+        snprintf(ipfname, BUFSIZ+1, "%s.%u-%s.%u", src_ip, tPacket->source, dst_ip, tPacket->dest);
+
+        while(!access(ipfname, F_OK)){
+            memset(ipfname, 0, sizeof(ipfname));
+            snprintf(ipfname, BUFSIZ, "%s.%u-%s.%u--%d", src_ip, tPacket->source, dst_ip, tPacket->dest, tick);
+            printf("%s\n",ipfname);
+            tick = tick+1;
+        }
+        snprintf(comb, BUFSIZ+1, "touch %s", ipfname);
+
+        if(access(ipfname, F_OK)){
+            printf("\n\n\n\nFILE EXISTSASDJLKFHASDKLJFHASKLDJHFASLKDJFAHSLDKJFHASDLKJFH\n\n\n\n\n");
+        }
+
         printf("here: %s\n%s\n", comb,ipfname);
-        decode_tcp(tPacket);
         system(comb);
         ipfp = fopen(ipfname, "w");//opens touch ----
-        //payload_size = ntohs(iph->tot_len) - (iph->ihl * 4) - (tPacket->doff * 4);
         strcpy(info, ((const char*)(pkt_data+sizeof(struct ethhdr) + pack.ip_header->ip_hl*4 + tPacket->doff*4)));
         if(cprint){
-            decode_tcp(tPacket);
-            printf( "%.*s\n\n", (header->len)-(tPacket->doff*4), info);
+            //decode_tcp(tPacket);
+            printf("%.*s\n\n", (header->len)-(tPacket->doff*4), info);
         }
-        fprintf(ipfp, "%.*s\n", (header->len)-(tPacket->doff*4), info);
+        //fwrite(info, BUFSIZ, sizeof(info), ipfp);
+        fprintf(ipfp, "%.*s\n\n", (header->len)-(tPacket->doff*4), info);
+        printf("-------------------------------------");
         fclose(ipfp);
         ipfp = NULL;
     }
@@ -201,9 +203,10 @@ void packet_handler(u_char *param, const struct pcap_pkthdr *header, const u_cha
         printf("   | Packet length: %d\n", pack.header->len);
         printf("   | Packet timestamp: %s\n\n", pack.time);
     }
-
+    
     if(fp != NULL){
         writef(pack, src_ip, dst_ip);
         if(pack.ip_header->ip_p == 6) tcpwritef(tPacket);
     }
+    
 }
