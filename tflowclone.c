@@ -13,6 +13,7 @@ https://en.wikipedia.org/wiki/Transmission_Control_Protocol
 --zlib
 --sudo tcpflow port 80 and host shinyslowfinemagic.neverssl.com
 --implement zlib decoding
+--look for 2 \n chars and then it is gzip encoded
 */
 
 int main(int argc, char* argv[]){
@@ -91,7 +92,6 @@ int main(int argc, char* argv[]){
     }
 
     if (access("report.xml", F_OK) != 0) {
-        //system(CREATE_FILE);
         system("touch report.xml");
     }
     
@@ -118,33 +118,25 @@ void packet_handler(u_char *param, const struct pcap_pkthdr *header, const u_cha
     struct udphdr *uPacket;
     struct iphdr *iph = (struct iphdr*)(pkt_data + sizeof(struct ethhdr));
     char *httppack = NULL;
-    char comb[BUFSIZ+6];
+    char comb[BUFSIZ];
     char *file_name = NULL;
-    //char t[BUFSIZ];
+    char *combInfo;
     char ipfname[BUFSIZ];
-    char info[BUFSIZ];
+    char info;
+    u_char *rawbdata;
     char src_ip[INET6_ADDRSTRLEN];
     char dst_ip[INET6_ADDRSTRLEN];
-    //char *store;
-    int siz;
+    int size;
     int tick = 1;
     int payload_size;
     int payload_off;
     pack.header = header;
     pack.time = ctime((const time_t *)&header->ts.tv_sec);
     pack.ip_header = (struct ip*)(pkt_data + sizeof(struct ether_header));
-    //ethernet header are the bytes up to 14
-    //ip header is the next 20 bytes
+    //info = (u_char *)malloc(1000 * sizeof(u_char));
+__HAVE_FLOAT64X_LONG_DOUBLE
 
-    /*
-    if(cprint && pack.ip_header->ip_p == 6){//only runs this if tcp packet
-        for (int i = 0; i < header->len; i++){
-            printf("%c", pkt_data[sizeof(struct ethhdr) + sizeof(struct iphdr) + sizeof(struct tcphdr) + i]);
-        }
-    printf("\n");
-    }
-    */ //add for other packets later
-    printf("----------------------------------------");
+    printf("----------------------------------------\n");
     if(pack.ip_header->ip_v == 4){
         inet_ntop(AF_INET, &(pack.ip_header->ip_src), src_ip, INET_ADDRSTRLEN);
         inet_ntop(AF_INET, &(pack.ip_header->ip_dst), dst_ip, INET_ADDRSTRLEN);
@@ -157,37 +149,37 @@ void packet_handler(u_char *param, const struct pcap_pkthdr *header, const u_cha
         printf("UNKOWN PACKET TYPE\n");
         exit(1);
     }
-    if(cprint) decode_ipvx(pack.ip_header);
+    //if(cprint) decode_ipvx(pack.ip_header);
 
     if(pack.ip_header->ip_p==6){
         tPacket = (struct tcphdr*)(pkt_data + sizeof(struct iphdr)+ sizeof(struct ethhdr));
-        //siz = snprintf(ipfname, BUFSIZ+1, "%s.%u-%s.%u.txt", src_ip, tPacket->source, dst_ip, tPacket->dest);
-        //snprintf(comb, BUFSIZ+1, "touch %s.%u-%s.%u.txt", src_ip, tPacket->source, dst_ip, tPacket->dest);
-        snprintf(ipfname, BUFSIZ+1, "%s.%u-%s.%u", src_ip, tPacket->source, dst_ip, tPacket->dest);
-
-        while(!access(ipfname, F_OK)){
-            memset(ipfname, 0, sizeof(ipfname));
-            snprintf(ipfname, BUFSIZ, "%s.%u-%s.%u--%d", src_ip, tPacket->source, dst_ip, tPacket->dest, tick);
-            printf("%s\n",ipfname);
-            tick = tick+1;
-        }
-        snprintf(comb, BUFSIZ+1, "touch %s", ipfname);
-
-        if(access(ipfname, F_OK)){
-            printf("\n\n\n\nFILE EXISTSASDJLKFHASDKLJFHASKLDJHFASLKDJFAHSLDKJFHASDLKJFH\n\n\n\n\n");
+        snprintf(ipfname, BUFSIZ+1, "%s.%hu-%s.%hu.txt", src_ip, ntohs(tPacket->source), dst_ip, ntohs(tPacket->dest));
+        printf("FNAME: %s\n", ipfname);
+        if(access(ipfname, F_OK) == 0){
+            ipfp = fopen(ipfname, "ab");
+        }else{
+            snprintf(comb, BUFSIZ+1, "touch %s", ipfname);
+            system(comb);
+            ipfp = fopen(ipfname, "wb");
         }
 
-        printf("here: %s\n%s\n", comb,ipfname);
-        system(comb);
-        ipfp = fopen(ipfname, "w");//opens touch ----
         strcpy(info, ((const char*)(pkt_data+sizeof(struct ethhdr) + pack.ip_header->ip_hl*4 + tPacket->doff*4)));
+        printf("%d\n", isHttpHeader(info));
+        //size = strlen(info);
+
         if(cprint){
-            //decode_tcp(tPacket);
+            decode_tcp(tPacket);
             printf("%.*s\n\n", (header->len)-(tPacket->doff*4), info);
         }
-        //fwrite(info, BUFSIZ, sizeof(info), ipfp);
-        fprintf(ipfp, "%.*s\n\n", (header->len)-(tPacket->doff*4), info);
-        printf("-------------------------------------");
+        //fprintf(ipfp, "%.*s\n", (header->len)-(tPacket->doff*4), info);
+        if(isHttpHeader(info) == 0){
+            fprintf(ipfp, info);
+
+            //for (int i = 0; i<size != '\0'; i++) {
+            //    fprintf(ipfp, "%02x ", rawbdata[i]); // Print each byte in hexadecimal format with leading zeros
+            //}
+        }else fprintf(ipfp, "%.*s\n", (header->len)-(tPacket->doff*4), info);
+        //free(info);
         fclose(ipfp);
         ipfp = NULL;
     }
@@ -203,6 +195,7 @@ void packet_handler(u_char *param, const struct pcap_pkthdr *header, const u_cha
         printf("   | Packet length: %d\n", pack.header->len);
         printf("   | Packet timestamp: %s\n\n", pack.time);
     }
+    printf("-------------------------------------\n");
     
     if(fp != NULL){
         writef(pack, src_ip, dst_ip);
